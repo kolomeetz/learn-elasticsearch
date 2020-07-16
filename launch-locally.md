@@ -34,3 +34,9 @@ After that we can make an HTTP call to Elasticsearch (`curl` will help) to get s
 ```
 
 This Elasticsearch instance will not preserve data between relaunches.
+
+Let's fix it by mapping a local directory as a volume:
+
+```shell
+docker run -p 9200:9200 -p 9300:9300 --volume "data:/usr/share/elasticsearch/data" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+```
